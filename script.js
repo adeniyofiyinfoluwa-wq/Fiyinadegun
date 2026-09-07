@@ -1,10 +1,1 @@
-const toggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
-
-toggle?.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-});
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => navLinks.classList.remove("open"));
-});
+const trigger=document.getElementById("storyTrigger"),panel=document.getElementById("storyPanel");trigger.addEventListener("click",()=>{const open=panel.classList.toggle("open");trigger.setAttribute("aria-expanded",open);trigger.querySelector("span:first-child").textContent=open?"Close my story":"Open my story";trigger.querySelector(".trigger-icon").textContent=open?"−":"+";if(open)setTimeout(()=>panel.scrollIntoView({behavior:"smooth",block:"start"}),120)});const items=document.querySelectorAll(".work-card,.platform-list a,.city-card,.about-intro,.hero-copy,.hero-visual");const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity="1";e.target.style.transform="none";observer.unobserve(e.target)}})},{threshold:.08});items.forEach((el,i)=>{el.style.opacity="0";el.style.transform="translateY(18px)";el.style.transition=`opacity .7s ease ${Math.min(i*.04,.3)}s,transform .7s ease ${Math.min(i*.04,.3)}s`;observer.observe(el)});
